@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1000 700"
+     role="img"
+     aria-labelledby="feature-title"
+     aria-describedby="feature-description">
+
+    <title id="feature-title">
+        Community soccer at a neighborhood field
+    </title>
+    <desc id="feature-description">
+        Players in maroon and gold share a green soccer field.
+        Four supporters gather beside a bench near the pitch.
+    </desc>
+
+    <defs>
+        <g id="person">
+            <path d="M-18 18 L-29 34 M18 18 L29 34"
+                  fill="none" stroke="#dca578"
+                  stroke-width="9" stroke-linecap="round"/>
+            <path d="M-10 40 V58 M10 40 V58"
+                  fill="none" stroke="#303b36"
+                  stroke-width="8" stroke-linecap="round"/>
+            <rect x="-19" y="7" width="38" height="36"
+                  rx="10" fill="currentColor"/>
+            <circle cy="-9" r="14" fill="#dca578"/>
+        </g>
+    </defs>
+
+    <rect width="1000" height="700" fill="#f5f1e8"/>
+
+    <circle cx="90" cy="80" r="100" fill="#eadbb5"/>
+    <circle cx="940" cy="650" r="140" fill="#e4e9da"/>
+
+    <rect x="110" y="110" width="780" height="440"
+          rx="22" fill="#286447"/>
+
+    <g fill="none" stroke="#fffaf0" stroke-width="5">
+        <rect x="130" y="130" width="740" height="400"/>
+        <path d="M500 130 V530"/>
+        <circle cx="500" cy="330" r="68"/>
+        <rect x="130" y="235" width="115" height="190"/>
+        <rect x="755" y="235" width="115" height="190"/>
+    </g>
+
+    <g fill="#fffaf0" stroke="#404940" stroke-width="4">
+        <rect x="90" y="275" width="40" height="110" rx="4"/>
+        <rect x="870" y="275" width="40" height="110" rx="4"/>
+    </g>
+
+    <use href="#person" x="340" y="235" color="#8c1d40"/>
+    <use href="#person" x="650" y="240" color="#ffc627"/>
+    <use href="#person" x="410" y="405" color="#ffc627"/>
+    <use href="#person" x="670" y="400" color="#8c1d40"/>
+
+    <g transform="translate(550 350)">
+        <circle r="17" fill="#fffaf0"
+                stroke="#303b36" stroke-width="3"/>
+        <path d="M0-8 8-2 5 7-5 7-8-2Z"
+              fill="#303b36"/>
+    </g>
+
+    <g fill="#987149">
+        <rect x="280" y="620" width="440" height="12" rx="5"/>
+        <rect x="300" y="632" width="12" height="25"/>
+        <rect x="688" y="632" width="12" height="25"/>
+    </g>
+
+    <use href="#person" x="350" y="580" color="#8c1d40"/>
+    <use href="#person" x="450" y="580" color="#567b95"/>
+    <use href="#person" x="550" y="580" color="#ffc627"/>
+    <use href="#person" x="650" y="580" color="#677854"/>
+
+</svg>

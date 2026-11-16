@@ -1,0 +1,343 @@
+/* Module 1 reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+img,
+svg {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+figure,
+blockquote {
+    margin: 0;
+}
+
+/* Module 1 design system, extended for this story */
+:root {
+    --color-primary: #16324f;
+    --color-accent: #f2b84b;
+    --color-background: #f5f7fa;
+    --color-surface: #ffffff;
+    --color-text: #243247;
+    --color-border: #cbd5e1;
+    --color-focus: #b45309;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+
+    --size-content: 72rem;
+    --measure-text: 65ch;
+    --radius-small: 0.375rem;
+    --radius-card: 0.75rem;
+    --shadow-card: 0 4px 12px rgb(0 0 0 / 0.08);
+
+    --font-body: Arial, "Segoe UI", sans-serif;
+    --font-display: Georgia, "Times New Roman", serif;
+    --font-size-small: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-medium: 1.25rem;
+    --font-size-large: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+    --font-size-title: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+    --line-height-body: 1.6;
+    --line-height-heading: 1.2;
+
+    /* Local layer scale; overlay is reserved for future use. */
+    --layer-base: 0;
+    --layer-raised: 10;
+    --layer-sticky: 20;
+    --layer-overlay: 30;
+
+    --quote-overlap: 2rem;
+}
+
+/* Typography and focus */
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+    margin-block: 0 var(--space-2);
+    font-family: var(--font-display);
+    line-height: var(--line-height-heading);
+}
+
+h1 {
+    font-size: var(--font-size-title);
+}
+
+h2 {
+    font-size: var(--font-size-large);
+}
+
+h3 {
+    font-size: var(--font-size-medium);
+}
+
+p {
+    margin-block: 0 var(--space-3);
+}
+
+a {
+    color: var(--color-primary);
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    text-decoration-thickness: 0.15em;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 4px;
+    scroll-margin-block: var(--space-3);
+}
+
+figcaption {
+    margin-block-start: var(--space-1);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
+}
+
+/* Header and normal-flow badge */
+.feature-header {
+    position: relative;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    background: var(--color-primary);
+    color: var(--color-surface);
+}
+
+.feature-header h1 {
+    max-inline-size: 30ch;
+    margin-block-end: var(--space-3);
+}
+
+.eyebrow {
+    margin-block-end: var(--space-2);
+    color: var(--color-accent);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.lede {
+    max-inline-size: var(--measure-text);
+    margin-block-end: 0;
+    font-size: var(--font-size-medium);
+}
+
+.issue-badge {
+    display: inline-block;
+    max-inline-size: 100%;
+    margin-block-start: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-accent);
+    color: var(--color-primary);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Primary layout: normal flow and Grid */
+.story-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    inline-size: min(100%, var(--size-content));
+    margin-inline: auto;
+    padding: var(--space-3);
+}
+
+.story-layout > article {
+    min-inline-size: 0;
+}
+
+article > section {
+    display: flow-root;
+    margin-block-end: var(--space-5);
+    scroll-margin-block-start: var(--space-4);
+}
+
+article > section > p {
+    max-inline-size: var(--measure-text);
+}
+
+.story-guide {
+    position: static;
+    align-self: start;
+    min-inline-size: 0;
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+}
+
+.story-guide h2 {
+    font-size: var(--font-size-medium);
+}
+
+.story-guide nav {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.story-guide a {
+    display: block;
+    padding: var(--space-1);
+}
+
+/* Figure and quotation: complete normal-flow baseline */
+.feature-composition {
+    display: flow-root;
+    margin-block: var(--space-4);
+}
+
+.feature-figure {
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: visible;
+}
+
+.feature-figure img {
+    inline-size: 100%;
+    pointer-events: none;
+}
+
+.pull-quote {
+    max-inline-size: 40rem;
+    margin: var(--space-3) auto;
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-inline-start: 0.35rem solid var(--color-accent);
+    box-shadow: var(--shadow-card);
+}
+
+.pull-quote blockquote p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--font-size-medium);
+    line-height: 1.5;
+}
+
+.pull-quote figcaption {
+    margin-block-start: var(--space-2);
+}
+
+/* Circular image baseline: no float required */
+.shape-portrait {
+    inline-size: min(100%, 16rem);
+    margin: 0 auto var(--space-3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Documentation remains outside the sticky container */
+.documentation {
+    inline-size: min(100%, var(--size-content));
+    margin: var(--space-4) auto;
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-inline-start: 0.35rem solid var(--color-primary);
+}
+
+/* Wide layout and bounded spatial relationships */
+@media (min-width: 52rem) {
+    .story-layout {
+        grid-template-columns: 14rem minmax(0, 1fr);
+    }
+
+    .feature-header {
+        padding-block-start: 6rem;
+    }
+
+    .issue-badge {
+        position: absolute;
+        inset-block-start: var(--space-3);
+        inset-inline-end: var(--space-3);
+        max-inline-size: calc(100% - 3rem);
+        margin-block-start: 0;
+    }
+
+    .feature-figure {
+        /* Reserve space after the caption for the overlap. */
+        padding-block-end:
+            calc(var(--space-4) + var(--quote-overlap));
+    }
+
+    .pull-quote {
+        position: relative;
+        z-index: var(--layer-raised);
+        inline-size: calc(100% - 2rem);
+        margin-block-start: calc(0rem - var(--quote-overlap));
+        margin-block-end: 0;
+    }
+}
+
+/* Sticky disengages on narrow or short viewports. */
+@media (min-width: 52rem) and (min-height: 38rem) {
+    .story-guide {
+        position: sticky;
+        inset-block-start: var(--space-2);
+        z-index: var(--layer-sticky);
+    }
+}
+
+/* Shape wrapping requires both supported declarations. */
+@supports (shape-outside: circle(50%) border-box)
+    and (float: inline-start) {
+    @media (min-width: 52rem) {
+        .shape-portrait {
+            float: inline-start;
+            inline-size: min(38%, 16rem);
+            margin: 0;
+            margin-inline-end: var(--space-2);
+            margin-block-end: var(--space-2);
+            shape-outside: circle(50%) border-box;
+            shape-margin: var(--space-2);
+        }
+    }
+}
+
+/* Clip only the image; captions and controls stay outside. */
+@supports (
+    clip-path: polygon(0 0, 100% 5%, 94% 100%, 6% 94%)
+) {
+    .feature-figure img {
+        clip-path: polygon(0 0, 100% 5%, 94% 100%, 6% 94%);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}

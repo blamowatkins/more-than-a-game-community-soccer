@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 600"
+     role="img"
+     aria-labelledby="ball-title"
+     aria-describedby="ball-description">
+
+    <title id="ball-title">
+        A soccer ball ready for a community game
+    </title>
+    <desc id="ball-description">
+        A white soccer ball with navy panels
+        sits against a gold circular background.
+    </desc>
+
+    <defs>
+        <g id="outer-panel">
+            <polygon
+                points="300 102 350 125 332 180 268 180 250 125"
+                fill="#16324f"/>
+            <path d="M300 180 V225"
+                  fill="none"
+                  stroke="#16324f"
+                  stroke-width="5"/>
+        </g>
+    </defs>
+
+    <rect width="600" height="600" fill="#f5f7fa"/>
+    <circle cx="300" cy="300" r="265" fill="#f2b84b"/>
+
+    <ellipse cx="300" cy="525"
+             rx="170" ry="18" fill="#cbd5e1"/>
+
+    <circle cx="300" cy="300" r="200"
+            fill="#ffffff"
+            stroke="#16324f"
+            stroke-width="8"/>
+
+    <use href="#outer-panel"/>
+    <use href="#outer-panel" transform="rotate(72 300 300)"/>
+    <use href="#outer-panel" transform="rotate(144 300 300)"/>
+    <use href="#outer-panel" transform="rotate(216 300 300)"/>
+    <use href="#outer-panel" transform="rotate(288 300 300)"/>
+
+    <polygon
+        points="300 225 371 277 344 361 256 361 229 277"
+        fill="#16324f"/>
+
+</svg>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Composition Plan</title>
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+                line-height:1.5;
+                max-width:90rem;
+                margin:auto;
+                padding:1rem;
+                color:#191919;
+                }
+            table{
+                width:100%;
+                border-collapse:collapse;
+                }
+            th,td{
+                padding:.6rem;
+                border:1px solid #999;
+                text-align:left;
+                vertical-align:top;
+                }
+            th{
+                background:#f1f1f1;
+                }
+        </style>
+        </head>
+        <body>
+            <h1>L6 · Composition Plan</h1>
+            <p>Complete one row for every positioned, layered, clipped, rounded, or shape-wrapped element. Duplicate rows as needed.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Content purpose</th>
+                        <th>Normal-flow baseline</th>
+                        <th>Chosen technique and why</th>
+                        <th>Containing block / stacking context</th>
+                        <th>Fallback or disengagement</th>
+                        <th>Required test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                       <td>Series badge — .issue-badge</td>
+                       <td>
+                           Identify the soccer story as part of the
+                           Community Voices editorial series.
+                       </td>
+                       <td>
+                           The badge appears in normal flow after the introduction.
+                       </td>
+                       <td>
+                           Use a relative header and an absolute badge on wider
+                           screens. Reserve space so the badge cannot cover the title.
+                        </td>
+                        <td>
+                           The .feature-header padding box is the containing block.
+                           Keep z-index auto to avoid unnecessary stacking contexts.
+                        </td>
+                        <td>
+                           Return the badge to normal flow on narrow screens.
+                           With CSS disabled, its text remains in source order.
+                        </td>
+                        <td>
+                           Inspect the containing block. Test at 320px, 768px,
+                           and 1280px, at 200% zoom, and with a longer title.
+                           Confirm that the badge never covers text.
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Story navigation — .story-guide</td>
+                        <td>
+                            Help readers move between the soccer story's sections.
+                        </td>
+                        <td>
+                           Navigation appears before the article in normal flow.
+                        </td>
+                        <td>
+                            Use bounded sticky positioning on wide, tall screens.
+                            Grid arranges the navigation beside the article.
+                        </td>
+                        <td>
+                            A planned .story-layout grid wrapper contains the
+                            navigation and article and bounds sticky travel.
+                            The viewport supplies the scroll threshold.
+                            Sticky creates a stacking context using --layer-sticky.
+                        </td>
+                        <td>
+                           Use static positioning on narrow or short viewports
+                           so every navigation link remains reachable.
+                           Without CSS, navigation remains before the article.
+                        </td>
+                        <td>
+                           Test scrolling at the wrapper's start and end.
+                           Check keyboard focus, anchor destinations, 200% zoom,
+                           and all required viewport widths.
+                           Confirm navigation never covers article content.
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Editorial pull quotation — .pull-quote</td>
+                        <td>
+                           Emphasize a short, properly attributed quotation
+                           about soccer's community role.
+                        </td>
+                        <td>
+                           The quotation follows the figure in normal flow,
+                           with its attribution visible beside the quotation.
+                        </td>
+                        <td>
+                           On wide screens, use a small negative block margin
+                           for controlled overlap into reserved space at the
+                           figure's bottom. Keep the quotation in flow.
+                        </td>
+                        <td>
+                           A planned .feature-composition wrapper contains the
+                           figure and quotation. Relative positioning with
+                           --layer-raised creates the quotation's stacking context.
+                        </td>
+                        <td>
+                           Remove the overlap on narrow screens.
+                           Without CSS, the figure, caption, quotation,
+                           and attribution remain in logical reading order.
+                        </td>
+                        <td>
+                           Test a longer quotation, doubled paragraphs,
+                           200% zoom, and all required viewport widths.
+                           Confirm the overlap covers no image detail,
+                           caption, article text, links, or focus indicators.
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Feature artwork — .feature-figure img</td>
+                        <td>
+                            Introduce the community soccer setting with an
+                            illustration whose angled edges echo field markings.
+                        </td>
+                        <td>
+                           A responsive rectangular image appears in a figure,
+                           followed by its caption and credit.
+                        </td>
+                        <td>
+                           Use a subtle polygon clip-path as an enhancement.
+                           Keep meaningful image details inside the visible area.
+                           Keep captions, text, and controls outside the clipping.
+                        </td>
+                        <td>
+                           The image remains in normal flow within .feature-figure.
+                           Its border box is the clipping reference box.
+                           A non-none clip-path creates a stacking context.
+                        </td>
+                        <td>
+                           Guard the chosen clipping declaration with @supports.
+                           Without clipping, show the complete rectangular image.
+                           Preserve contextual alternative text and the caption.
+                        </td>
+                        <td>
+                           Disable clip-path and compare both states.
+                           Test all required viewport widths and 200% zoom.
+                           Check image meaning, caption visibility,
+                           stacking order, and nearby link interaction.
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Soccer-ball illustration — .shape-portrait</td>
+                        <td>
+                           Introduce the section about participation and volunteering
+                           with a soccer-themed illustration.
+                        </td>
+                        <td>
+                           A responsive square image appears before the section's
+                           paragraphs in normal flow.
+                        </td>
+                        <td>
+                            Use border-radius for a circular presentation.
+                            On wide screens, progressively enhance with a float,
+                            shape-outside: circle(50%) border-box,
+                            and shape-margin to separate text from the illustration.
+                        </td>
+                        <td>
+                            The story section contains the float using flow-root.
+                            The image's border box defines the wrapping shape.
+                            Border-radius and shape-outside create no stacking context.
+                        </td>
+                        <td>
+                           On narrow screens or without shape support, keep the
+                           image un-floated. Disabling shape-outside alone leaves
+                           ordinary rectangular float wrapping.
+                           Both states must remain readable.
+                        </td>
+                        <td>
+                           Disable shape-outside and compare wrapping.
+                           Test 320px, 768px, 1280px, 200% zoom, and doubled paragraphs.
+                           Confirm text clears the float, stays comfortably separated,
+                           and returns to full width below the illustration.
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Rounded figure frame — .feature-figure</td>
+                        <td>
+                            Visually group the feature artwork, caption, and credit
+                            as one editorial figure.
+                        </td>
+                        <td>
+                            The figure is a normal-flow block containing
+                            a responsive image and its caption.
+                        </td>
+                        <td>
+                            Use the design system's border-radius token to soften
+                            the frame's corners. Keep padding around its contents
+                            and reserve bottom space for the planned quotation overlap.
+                        </td>
+                        <td>
+                           The figure remains in its article section.
+                           Border-radius creates no stacking context.
+                           Remove unnecessary positioning from the starter figure.
+                        </td>
+                        <td>
+                           Without border-radius, the frame has square corners.
+                           Keep overflow visible so captions and focus outlines
+                           are not clipped by the frame.
+                        </td>
+                        <td>
+                           Disable border-radius and confirm content remains intact.
+                           Test long captions, credits, 200% zoom,
+                           and all required viewport widths.
+                           Confirm quotation overlap uses only reserved space.
+                        </td>
+                        </tr>
+                </tbody>
+            </table>
+        </body>
+        </html>

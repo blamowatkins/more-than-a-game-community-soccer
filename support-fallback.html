@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Support and Fallback Record | Community Voices</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="documentation">
+        <p><a href="index.html">Return to the story</a></p>
+
+        <h1>L6 · Support and Fallback Record</h1>
+
+        <p>
+            <strong>Project:</strong>
+            More Than a Game: How Community Soccer Brings People Together
+        </p>
+
+        <p>
+            <strong>MDN references checked:</strong>
+            <time datetime="2026-11-14">November 14, 2026</time>.
+        </p>
+
+        <p>
+            This record explains the CSS features used, their layout and
+            layering effects, and their fallbacks. The observations below
+            summarize the browser checks; the complete test record is in
+            <a href="test-record.html">test-record.html</a>.
+        </p>
+
+        <h2>Features, effects, and fallbacks</h2>
+
+        <dl>
+            <dt><strong>Anchored series badge</strong></dt>
+            <dd>
+                On wide screens, the badge uses absolute positioning inside
+                the relatively positioned feature header. The header's
+                padding box is its containing block, and its spacing reserves
+                room for the title. On narrow screens, the badge returns to
+                normal flow. Reference:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position">
+                    MDN position
+                </a>.
+            </dd>
+
+            <dt><strong>Bounded sticky navigation</strong></dt>
+            <dd>
+                Sticky positioning is enabled only when the viewport is at
+                least 52rem wide and 38rem tall. The navigation sticks 1rem
+                from the block start. Its travel is bounded by
+                <code>main.story-layout</code>; the viewport supplies the
+                scrolling reference. Narrow or short viewports use static
+                positioning. Reference:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position">
+                    MDN position
+                </a>.
+            </dd>
+
+            <dt><strong>Controlled quotation overlap</strong></dt>
+            <dd>
+                On wide screens, a negative block-start margin overlaps the
+                quotation into space reserved below the figure. The quotation
+                remains in flow. Relative positioning and a non-auto
+                <code>z-index</code> create its local stacking context. The
+                overlap is removed on narrow screens. References:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Positioned_layout/Stacking_context">
+                    MDN stacking contexts
+                </a>
+                and
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index">
+                    MDN z-index
+                </a>.
+            </dd>
+
+            <dt><strong>Clipped feature artwork</strong></dt>
+            <dd>
+                A polygon clips only the feature image. The image's border
+                box supplies the clipping reference box. A non-none
+                <code>clip-path</code> creates a stacking context without
+                changing the image's layout footprint. The caption stays
+                outside the clipping. Without clipping, the full rectangular
+                image remains visible. Reference:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path">
+                    MDN clip-path
+                </a>.
+            </dd>
+
+            <dt><strong>Circular editorial wrapping</strong></dt>
+            <dd>
+                On wide screens, the soccer-ball image floats when the
+                browser supports the circle shape and logical float used by
+                the stylesheet. Its border box defines the wrapping circle,
+                and a 1rem shape margin separates the text from the image.
+                The section uses <code>flow-root</code> to contain the float.
+                Without the enhancement, the image remains in normal flow.
+                Disabling only <code>shape-outside</code> leaves rectangular
+                float wrapping. References:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/shape-outside">
+                    MDN shape-outside
+                </a>,
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/shape-margin">
+                    MDN shape-margin
+                </a>,
+                and
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/float">
+                    MDN float
+                </a>.
+            </dd>
+
+            <dt><strong>Rounded presentation</strong></dt>
+            <dd>
+                <code>border-radius</code> rounds the feature frame and the
+                soccer-ball image. It does not change their basic layout
+                footprints or create stacking contexts. The figure keeps
+                overflow visible so captions and focus outlines are not
+                clipped. Without rounding, the content remains complete.
+                Reference:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius">
+                    MDN border-radius
+                </a>.
+            </dd>
+
+            <dt><strong>Feature queries</strong></dt>
+            <dd>
+                The stylesheet checks the polygon, circle, and logical-float
+                declarations it uses. A successful feature query does not
+                prove that every part of the enhanced layout works correctly;
+                browser testing is also required. Reference:
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@supports">
+                    MDN @supports
+                </a>.
+            </dd>
+        </dl>
+
+        <h2>Documented layer scale</h2>
+
+        <ul>
+            <li>
+                <code>--layer-base: 0</code> — normal content and base
+                painting level.
+            </li>
+            <li>
+                <code>--layer-raised: 10</code> — the wide-screen quotation.
+            </li>
+            <li>
+                <code>--layer-sticky: 20</code> — navigation when sticky
+                positioning is enabled.
+            </li>
+            <li>
+                <code>--layer-overlay: 30</code> — reserved; no overlay
+                currently uses it.
+            </li>
+        </ul>
+
+        <p>
+            These levels are local to their stacking contexts. The clipped
+            image, wide-screen quotation, and sticky navigation can each
+            create a context. The header and badge retain automatic stack
+            levels. DevTools showed <code>position: static</code> and
+            <code>z-index: auto</code> for <code>img.shape-portrait</code>;
+            its float does not require relative positioning.
+        </p>
+
+        <h2>Interaction protection</h2>
+
+        <p>
+            Both illustrations use <code>pointer-events: none</code>.
+            Captions, quotation attribution, and navigation links remain
+            outside clipped image content. Pointer and keyboard checks
+            confirmed that the links remained usable and focus stayed visible.
+        </p>
+
+        <h2>Fallback test results</h2>
+
+        <p>
+            <strong>Status: completed.</strong>
+            The fallback checks were performed in Chrome on Windows. The
+            screenshots are linked below; viewport, zoom, keyboard, and
+            content-growth results are recorded in
+            <a href="test-record.html">the test record</a>.
+        </p>
+
+        <table>
+            <caption>Observed fallback results</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Check</th>
+                    <th scope="col">Observed result</th>
+                    <th scope="col">Evidence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Clip-path disabled</th>
+                    <td>
+                        The full rectangular feature artwork remained visible;
+                        the caption and nearby content stayed readable.
+                    </td>
+                    <td>
+                        <a href="evidence/t14-clip-path-disabled.png">
+                            t14-clip-path-disabled.png
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Shape-outside disabled</th>
+                    <td>
+                        The image retained its float and text used readable
+                        rectangular wrapping.
+                    </td>
+                    <td>
+                        <a href="evidence/t15-shape-outside-disabled.png">
+                            t15-shape-outside-disabled.png
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Float enhancement disabled</th>
+                    <td>
+                        The image returned to a block layout before the
+                        paragraphs; the story remained readable.
+                    </td>
+                    <td>
+                        <a href="evidence/t15-shape-and-float-disabled.png">
+                            t15-shape-and-float-disabled.png
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Border-radius disabled</th>
+                    <td>
+                        The image and its content remained visible with
+                        rounding disabled.
+                    </td>
+                    <td>
+                        <a href="evidence/t17-radius-disabled.png">
+                            t17-radius-disabled.png
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Quotation overlap disabled</th>
+                    <td>
+                        The quotation moved below the figure, and the
+                        quotation and following prose remained readable.
+                    </td>
+                    <td>
+                        <a href="evidence/t17-quote-overlap-disabled.png">
+                            t17-quote-overlap-disabled.png
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Stacking inspection</th>
+                    <td>
+                        DevTools showed <code>position: static</code> and
+                        <code>z-index: auto</code> for the soccer-ball image.
+                        The inspected layers matched the expected behavior.
+                    </td>
+                    <td>
+                        <a href="evidence/t16-image-position.png">
+                            t16-image-position.png
+                        </a>;
+                        <a href="evidence/t16-stacking-z-index.png">
+                            t16-stacking-z-index.png
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>CSS validation note</h2>
+
+        <p>
+            The W3C CSS Validator reported unsupported-property errors for
+            <code>shape-outside</code> and <code>shape-margin</code>, plus
+            CSS-variable warnings. Chrome applied the shape values during
+            browser inspection. See the validation evidence and detailed
+            result in <a href="test-record.html">the test record</a>.
+        </p>
+    </main>
+</body>
+</html>

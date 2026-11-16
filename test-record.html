@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Test Record | Community Voices</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .table-scroll {
+            overflow-x: auto;
+            margin-block: 1.5rem;
+        }
+
+        .test-table {
+            width: 100%;
+            min-width: 54rem;
+            border-collapse: collapse;
+        }
+
+        .test-table th,
+        .test-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .test-table th {
+            background: var(--color-background);
+        }
+
+        .test-table caption {
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <main class="documentation">
+        <p><a href="index.html">Return to the story</a></p>
+
+        <h1>L6 · Test Record</h1>
+
+        <p>
+            <strong>Project:</strong>
+            More Than a Game: How Community Soccer Brings People Together
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            All listed tests have been performed. See T01 and T02 notes for
+            validation details and T16 for the inspected computed values.
+        </p>
+
+        <h2>Test environment</h2>
+
+        <ul>
+            <li><strong>Record updated:</strong> 2026-11-15</li>
+            <li><strong>Browser:</strong> 157.0.8103.50 (Official Build) (64-bit) (cohort: 157.0.8103.50 Rollout) </li>
+            <li><strong>Operating system:</strong> Windows</li>
+            <li><strong>Viewports:</strong> 320px, 768px, and 1280px</li>
+            <li><strong>Zoom:</strong> 200% for zoom and focus checks</li>
+            <li><strong>Version or commit:</strong> Local assessment folder; commit not recorded</li>
+        </ul>
+
+        <h2>Checks and observations</h2>
+
+        <p>
+            Screenshots are saved in the project's evidence folder. The
+            evidence filenames below match the saved files.
+        </p>
+
+        <div class="table-scroll"
+             role="region"
+             aria-labelledby="test-table-caption"
+             tabindex="0">
+            <table class="test-table">
+                <caption id="test-table-caption">
+                    Test results and evidence
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Test</th>
+                        <th scope="col">Expected behavior</th>
+                        <th scope="col">Status and observed result</th>
+                        <th scope="col">Evidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="t01">
+                        <th scope="row">T01 · HTML validation</th>
+                        <td>
+                            Validate the story and supporting HTML files.
+                            Resolve errors and record remaining warnings.
+                        </td>
+                        <td>
+                            Pass — The story and supporting HTML pages were
+                            checked; no errors were reported. Screenshots
+                            were saved for the story and composition plan.
+                        </td>
+                        <td>
+                            t01-index-html-validation.png;
+                            t01-composition-plan.png
+                        </td>
+                    </tr>
+
+                    <tr id="t02">
+                        <th scope="row">T02 · CSS validation</th>
+                        <td>
+                            Validate styles.css and document warnings or
+                            validator limitations.
+                        </td>
+                        <td>
+                            Pass with documented validator limitation —
+                            Chrome applies the shape values. The W3C CSS
+                            Validator reports 3 unsupported-property errors
+                            for shape-outside and shape-margin, plus 4
+                            CSS-variable warnings.
+                        </td>
+                        <td>
+                            t02-css-validator-results.png;
+                            t02-css-shapes-computed.png
+                        </td>
+                    </tr>
+
+                    <tr id="t03">
+                        <th scope="row">T03 · CSS-disabled reading order</th>
+                        <td>
+                            Content remains complete and logically ordered
+                            when CSS is disabled.
+                        </td>
+                        <td>
+                            Pass — The story content and documentation remain
+                            complete and in logical order.
+                        </td>
+                        <td>
+                            t03-css-disabled-top.png;
+                            t03-css-disabled-middle.png;
+                            t03-css-disabled-bottom.png
+                        </td>
+                    </tr>
+
+                    <tr id="t04">
+                        <th scope="row">T04 · 320px viewport</th>
+                        <td>
+                            Content fits without page-level horizontal
+                            scrolling; narrow-screen layouts remain usable.
+                        </td>
+                        <td>
+                            Pass — At 320px, the narrow layout remains
+                            readable without page-level horizontal overflow.
+                        </td>
+                        <td>
+                            t04-320-header.png;
+                            t04-320-feature.png;
+                            t04-320-shape.png;
+                            t04-320-documentation.png
+                        </td>
+                    </tr>
+
+                    <tr id="t05">
+                        <th scope="row">T05 · 768px viewport</th>
+                        <td>
+                            The single-column layout remains readable, with
+                            complete text, artwork, captions, and controls.
+                        </td>
+                        <td>
+                            Pass — At 768px, the single-column layout remains
+                            readable, with the header, feature, shape, and
+                            documentation visible.
+                        </td>
+                        <td>
+                            t05-768-header.png;
+                            t05-768-feature.png;
+                            t05-768-shape.png;
+                            t05-768-documentation.png
+                        </td>
+                    </tr>
+
+                    <tr id="t06">
+                        <th scope="row">T06 · 1280px viewport</th>
+                        <td>
+                            The guide and article use the grid; the badge,
+                            quotation, and text wrapping display correctly.
+                        </td>
+                        <td>
+                            Pass — The wide layout and quotation overlap
+                            display as expected.
+                        </td>
+                        <td>
+                            t06-1280-header.png;
+                            t06-1280-overlap.png;
+                            t06-1280-documentation.png
+                        </td>
+                    </tr>
+
+                    <tr id="t07">
+                        <th scope="row">T07 · 200% zoom</th>
+                        <td>
+                            Text reflows without collisions, clipping, or
+                            obscured controls.
+                        </td>
+                        <td>
+                            Pass — The 200% zoom layout and anchor remain
+                            readable.
+                        </td>
+                        <td>
+                            t07-200-zoom-setting.png;
+                            t07-200-shape-and-anchor.png
+                        </td>
+                    </tr>
+
+                    <tr id="t08">
+                        <th scope="row">T08 · Keyboard and focus</th>
+                        <td>
+                            Keyboard order is logical, focus outlines remain
+                            visible, and Enter activates links.
+                        </td>
+                        <td>
+                            Pass — Navigation, content links, anchor targets,
+                            and documentation links were checked with
+                            keyboard focus.
+                        </td>
+                        <td>
+                            t08-200-navigation-focus.png;
+                            t08-200-quote-focus.png;
+                            t08-200-quote-attribution-focus.png;
+                            t08-200-safe-places-focus.png;
+                            t08-200-pathways-focus.png;
+                            t08-200-credits-focus.png;
+                            t08-200-documentation-focus.png;
+                            t08-200-anchor-target.png;
+                            t08-composition-plan-keyboard-open.png;
+                            t08-support-fallback-keyboard-open.png;
+                            t08-test-record-keyboard-open.png;
+                            t08-safe-places-keyboard-open.png;
+                            t08-pathways-keyboard-open.png;
+                            t08-soccer-success-keyboard-open.png;
+                            t08-quote-attribution-keyboard-open.png
+                        </td>
+                    </tr>
+
+                    <tr id="t09">
+                        <th scope="row">T09 · Long-title growth</th>
+                        <td>
+                            A longer title expands the header without
+                            colliding with the badge.
+                        </td>
+                        <td>
+                            Pass — The header grew to fit the longer title.
+                        </td>
+                        <td>t09-long-title-growth.png</td>
+                    </tr>
+
+                    <tr id="t10">
+                        <th scope="row">T10 · Doubled-paragraph growth</th>
+                        <td>
+                            Longer story content expands naturally and
+                            remains readable.
+                        </td>
+                        <td>
+                            Pass — The section expanded with the additional
+                            paragraph content.
+                        </td>
+                        <td>T10-section-one.png</td>
+                    </tr>
+
+                    <tr id="t11">
+                        <th scope="row">T11 · Caption and quotation growth</th>
+                        <td>
+                            Longer captions and quotation text expand without
+                            covering prose or captions.
+                        </td>
+                        <td>
+                            Pass — Caption and quotation growth remained
+                            readable.
+                        </td>
+                        <td>t11-caption-quote-growth.png</td>
+                    </tr>
+
+                    <tr id="t12">
+                        <th scope="row">T12 · Sticky boundaries</th>
+                        <td>
+                            Sticky navigation stays bounded by the story
+                            layout and becomes static in narrow or short views.
+                        </td>
+                        <td>
+                            Pass — The sticky boundary behavior matched the
+                            expected layout.
+                        </td>
+                        <td>t12-sticky-boundary.png</td>
+                    </tr>
+
+                    <tr id="t13">
+                        <th scope="row">T13 · Pointer activation</th>
+                        <td>
+                            Navigation, attribution, source, and documentation
+                            links activate without being blocked.
+                        </td>
+                        <td>
+                            Pass — The links were clicked and activated.
+                        </td>
+                        <td>t13-pointer-activation.png</td>
+                    </tr>
+
+                    <tr id="t14">
+                        <th scope="row">T14 · Clipping disabled</th>
+                        <td>
+                            The full rectangular artwork, caption, quotation,
+                            and nearby links remain readable and usable.
+                        </td>
+                        <td>
+                            Pass — Disabling clip-path left the artwork and
+                            nearby content readable.
+                        </td>
+                        <td>t14-clip-path-disabled.png</td>
+                    </tr>
+
+                    <tr id="t15">
+                        <th scope="row">T15 · Wrapping fallbacks</th>
+                        <td>
+                            Disabling shape-outside or the float enhancement
+                            leaves a readable layout.
+                        </td>
+                        <td>
+                            Pass — The shape and float fallback layouts were
+                            checked.
+                        </td>
+                        <td>
+                            t15-shape-outside-disabled.png;
+                            t15-shape-and-float-disabled.png
+                        </td>
+                    </tr>
+
+                    <tr id="t16">
+                        <th scope="row">T16 · Stacking-context inspection</th>
+                        <td>
+                            Computed properties and ancestor relationships
+                            match the documented layer behavior.
+                        </td>
+                        <td>
+                            Pass — The inspected layers matched expectations.
+                            For img.shape-portrait, DevTools showed
+                            position: static and z-index: auto.
+                        </td>
+                        <td>
+                            t16-image-position.png;
+                            t16-stacking-z-index.png
+                        </td>
+                    </tr>
+
+                    <tr id="t17">
+                        <th scope="row">T17 · Rounding and overlap fallbacks</th>
+                        <td>
+                            Disabling border-radius and quotation overlap
+                            separately leaves content and focus indicators
+                            usable.
+                        </td>
+                        <td>
+                            Pass — The image and quotation remained readable
+                            with each enhancement disabled.
+                        </td>
+                        <td>
+                            t17-radius-disabled.png;
+                            t17-quote-overlap-disabled.png
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Issues, repairs, and retests</h2>
+
+        <p>
+            The CSS validator reported unsupported shape properties and
+            CSS-variable warnings. Chrome applied the shape values during
+            browser inspection. No other issues were recorded.
+        </p>
+
+        <h2>Final submission check</h2>
+
+        <p>
+            Before submitting, record the Chrome version and confirm the
+            evidence filenames match the files in the evidence folder.
+            Reload the story after DevTools tests so temporary style changes
+            are cleared.
+        </p>
+    </main>
+</body>
+</html>
